@@ -1,0 +1,51 @@
+body {
+    background-color: #fffde6;
+    font-family: "Quintessential", serif;
+    text-align: center;
+}
+section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 5px;
+}
+h1, h2, h3, h4, p {
+    margin: 5px;
+}
+.container {
+    max-width: 600px;
+}
+.wall {
+    column-count: 3;
+    @media (max-width: 576px) {
+        column-count: 2;
+    }
+}
+.brick {
+    break-inside: avoid;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+
+    border-radius: 25px;
+    border: 1px solid black;
+
+    transition: background-color 200ms, color 200ms;
+}
+.apparition {
+    background-color: #ff8080;
+}
+.healing {
+    background-color: #8086ff;
+}
+.eucharistic {
+    background-color: #ffea80;
+}
+.incorruptible {
+    background-color: #86ff80;
+}
+.brick:hover:not(.display) {
+    background-color: #333333;
+    color: white;
+}
