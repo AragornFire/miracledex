@@ -5,7 +5,8 @@
 **Project Title:** MiracleDex<br>
 **Submission Date:**  6/11/2025<br>
 **GitHub Repo:** [GitHub](https://github.com/AragornFire/miracledex)<br>
-**Live Site (GitHub Pages):** [MiracleDex](https://aragornfire.github.io/miracledex/)
+**Live Site (GitHub Pages):** [MiracleDex](https://aragornfire.github.io/miracledex/)<br>
+**ChatGPT Help:** [Fixing masonry and failed mobile media queries](https://chatgpt.com/share/68488080-12c8-800d-8396-d5b09c4ddbd5)
 
 ---
 
