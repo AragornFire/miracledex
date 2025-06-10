@@ -7,76 +7,71 @@ async function loadMiracles () {
 	const res = await fetch("https://gist.githubusercontent.com/trevortomesh/7bbf97b2fbae96639ebf1a254b6a7a70/raw/miracles.json");
 	const data = await res.json();
 	console.log(data);
-	renderMiracles(data);
+	renderMiracles(data, "first"); // Go to the first page
 	return data;
 }
 
 loadMiracles().then((data) => {globalThis.miracles = data;});
 
+function makeHTMLElement (pair) {
+	const elem = document.createElement(pair[0]);
+	elem.textContent = pair[1];
+	return elem;
+}
 
 function displayBrick (id) {
 	const brick = document.getElementById(id);
 	const display = document.getElementById('display');
-	const data = globalThis.miracles[parseInt(brick.id) - 1];
-	console.log(data);
+	const miracle = globalThis.miracles[parseInt(brick.id) - 1];
+	//console.log(data); // Debugging
 
-	display.classList = brick.classList;
-	display.classList.add('display')
-	display.innerHTML = '';
+	display.classList = brick.classList; // Should have the same styling
+	display.classList.add('display'); // This is used to avoid the hovering style change
+	display.innerHTML = ''; // Clear out element
 
-	const title = document.createElement("h1");
-	title.textContent = data.title;
-	display.appendChild(title);
-
-	const location = document.createElement('h2');
-	location.textContent = data.location;
-	display.appendChild(location);
-
-	const year = document.createElement('h4');
-	year.textContent = data.year;
-	display.appendChild(year);
-
-	const summary = document.createElement("p");
-	summary.textContent = data.summary;
-	display.appendChild(summary);
-
+	[['h1', miracle.title], ['h2', miracle.type + ': ' + miracle.category], ['h3', miracle.location + ' - ' + miracle.year], ['p', miracle.summary], ['p', miracle.details]].forEach(pair => {
+		display.appendChild(makeHTMLElement(pair)); // Add all the elements
+	});
 }
 
-const subclasses = {
+const subclasses = { // Subclasses for special coloring
 	"Apparition": "apparition",
 	"Healing": "healing",
 	"Eucharistic": "eucharistic",
 	"Incorruptible": "incorruptible"
 }
 
-function renderMiracles (data) {
+function renderMiracles (data, half) {
 	const wall = document.getElementById("wall");
-	data.forEach(miracle => {
+	wall.innerHTML = ""; // Clear out the contents for pagination
+	let myData = []; // Used for slicing
+	const midpoint = Math.floor(data.length / 2); // Save code
+	if (half === "first") {
+		myData = data.slice(0, midpoint);
+	} else if (half === "second") {
+		myData = data.slice(midpoint, data.length);
+	} else {
+		alert("Error in determining which page to load!") // Should always be there, so must be an error
+	}
+
+	myData.forEach(miracle => {
 		const brick = document.createElement('div');
-		brick.id = miracle.id;
+		brick.id = miracle.id; // For showing at the top of the page
 		brick.classList.add('brick');
-		brick.classList.add(subclasses[miracle.type]);
+		brick.classList.add(subclasses[miracle.type]); // Special coloring
 
-		const title = document.createElement("h3");
-		title.textContent = miracle.title;
-		brick.appendChild(title);
-
-		const location = document.createElement('h4');
-		location.textContent = miracle.location;
-		brick.appendChild(location);
-
-		const year = document.createElement('p');
-		year.textContent = miracle.year;
-		brick.appendChild(year);
-
-		const summary = document.createElement("p");
-		summary.textContent = miracle.summary;
-		brick.appendChild(summary);
-
-		brick.addEventListener('click', () => {displayBrick(brick.id)});
+		[['h3', miracle.title], ['h4', miracle.location + ' - ' + miracle.year], ['p', miracle.summary]].forEach(pair => {
+			brick.appendChild(makeHTMLElement(pair)); // Add all the elements
+		});
+		brick.addEventListener('click', () => {displayBrick(brick.id)}); // For putting them at the top of the page
 
 		wall.appendChild(brick);
 	})
+}
+
+const buttons = document.getElementsByTagName('button'); // Add paging functionality to buttons
+for (let button of buttons) {
+	button.addEventListener('click', () => {renderMiracles(miracles, button.id)});
 }
 
 /*

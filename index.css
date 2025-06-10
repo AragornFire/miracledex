@@ -13,14 +13,20 @@ section {
 h1, h2, h3, h4, p {
     margin: 5px;
 }
+button {
+    margin: 20px;
+    color: white;
+    font-family: "Quintessential", serif;
+    font-weight: bold;
+    background-color: #333333;
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
 .container {
     max-width: 600px;
-}
-.wall {
-    column-count: 3;
-    @media (max-width: 576px) {
-        column-count: 2;
-    }
 }
 .brick {
     break-inside: avoid;
@@ -28,10 +34,21 @@ h1, h2, h3, h4, p {
     box-sizing: border-box;
     margin-bottom: 10px;
 
-    border-radius: 25px;
     border: 1px solid black;
+    border-radius: 25px;
 
     transition: background-color 200ms, color 200ms;
+}
+.brick:hover:not(.display) {
+    background-color: #333333;
+    color: white;
+    cursor: pointer;
+}
+.wall {
+    column-count: 3;
+    @media (max-width: 480px) {
+        column-count: 2;
+    }
 }
 .apparition {
     background-color: #ff8080;
@@ -44,8 +61,4 @@ h1, h2, h3, h4, p {
 }
 .incorruptible {
     background-color: #86ff80;
-}
-.brick:hover:not(.display) {
-    background-color: #333333;
-    color: white;
 }
