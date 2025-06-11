@@ -2,9 +2,9 @@
 I came so close to asking ChatGPT on multiple occasions,
 until I thought "Wait, what if I just looked that up?"
  */
-
 async function loadMiracles () {
-	const res = await fetch("https://gist.githubusercontent.com/trevortomesh/7bbf97b2fbae96639ebf1a254b6a7a70/raw/miracles.json");
+	const res = await fetch("https://gist.githubusercontent.com/trevortomesh/" +
+		"7bbf97b2fbae96639ebf1a254b6a7a70/raw/miracles.json");
 	const data = await res.json();
 	console.log(data);
 	renderMiracles(data, "first"); // Go to the first page
@@ -29,7 +29,9 @@ function displayBrick (id) {
 	display.classList.add('display'); // This is used to avoid the hovering style change
 	display.innerHTML = ''; // Clear out element
 
-	[['h1', miracle.title], ['h2', miracle.type + ': ' + miracle.category], ['h3', miracle.location + ' - ' + miracle.year], ['p', miracle.summary], ['p', miracle.details]].forEach(pair => {
+	[['h1', miracle.title], ['h2', miracle.type + ': ' + miracle.category],
+		['h3', miracle.location + ' - ' + miracle.year], ['p', miracle.summary],
+		['p', miracle.details]].forEach(pair => {
 		display.appendChild(makeHTMLElement(pair)); // Add all the elements
 	});
 }
@@ -51,7 +53,7 @@ function renderMiracles (data, half) {
 	} else if (half === "second") {
 		myData = data.slice(midpoint, data.length);
 	} else {
-		alert("Error in determining which page to load!") // Should always be there, so must be an error
+		alert("Error in determining which page to load!") // Should always be there
 	}
 
 	myData.forEach(miracle => {
@@ -60,17 +62,20 @@ function renderMiracles (data, half) {
 		brick.classList.add('brick');
 		brick.classList.add(subclasses[miracle.type]); // Special coloring
 
-		[['h3', miracle.title], ['h4', miracle.location + ' - ' + miracle.year], ['p', miracle.summary]].forEach(pair => {
+		[['h3', miracle.title], ['h4', miracle.location + ' - ' + miracle.year],
+			['p', miracle.summary]].forEach(pair => {
 			brick.appendChild(makeHTMLElement(pair)); // Add all the elements
 		});
-		brick.addEventListener('click', () => {displayBrick(brick.id)}); // For putting them at the top of the page
+
+		// For putting them at the top of the page
+		brick.addEventListener('click', () => {displayBrick(brick.id)});
 
 		wall.appendChild(brick);
 	})
 }
 
-const buttons = document.getElementsByTagName('button'); // Add paging functionality to buttons
-for (let button of buttons) {
+const buttons = document.getElementsByTagName('button');
+for (let button of buttons) { // Add paging functionality to buttons
 	button.addEventListener('click', () => {renderMiracles(miracles, button.id)});
 }
 
@@ -87,3 +92,4 @@ Reference data
     category: 'Incorrupt host'
 }
  */
+

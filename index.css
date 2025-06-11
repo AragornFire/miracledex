@@ -1,5 +1,5 @@
 body {
-    background-color: #fffde6;
+    background-color: #ebebeb;
     font-family: "Quintessential", serif;
     text-align: center;
 }
@@ -49,16 +49,19 @@ button {
     @media (max-width: 480px) {
         column-count: 2;
     }
+    @media (max-width: 380px) {
+        column-count: 1;
+    }
 }
 .apparition {
-    background-color: #ff8080;
+    background-color: #ffd9d9;
 }
 .healing {
-    background-color: #8086ff;
+    background-color: #d9dcff;
 }
 .eucharistic {
-    background-color: #ffea80;
+    background-color: #fff9d9;
 }
 .incorruptible {
-    background-color: #86ff80;
+    background-color: #f6d9ff;
 }
