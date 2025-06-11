@@ -65,7 +65,8 @@
 ```
 
 ### 🖋️ Reflection
-What challenges did you face in designing a responsive layout? What did you learn about structuring HTML/CSS for real-world use? 
+What challenges did you face in designing a responsive layout?
+What did you learn about structuring HTML/CSS for real-world use? 
 
 > I can't say I encountered any difficulties making my site responsive.
 > The contents of the site work well regardless of the screen size.
@@ -167,7 +168,8 @@ for (let button of buttons) {
 ```
 
 ### 🖋️ Reflection
-What did you learn about asynchronous JavaScript? What debugging techniques did you use or discover?
+What did you learn about asynchronous JavaScript?
+What debugging techniques did you use or discover?
 
 > One tricky thing that I noticed was that you need extra steps to use the data in a Promise.
 > I kept running into `undefined` when I tried indexing the data.
@@ -195,7 +197,8 @@ What did you learn about asynchronous JavaScript? What debugging techniques did 
 - **Live GitHub Pages Site:** [MiracleDex](https://aragornfire.github.io/miracledex/)
 
 ### 🖋️ Reflection
-How did using GitHub affect your development process? What new Git or GitHub skills did you gain?
+How did using GitHub affect your development process?
+What new Git or GitHub skills did you gain?
 
 > I had some confusion before I realized I had never made an actual GitHub repository.
 > I was under the assumption that it was created automatically when I made the project.
